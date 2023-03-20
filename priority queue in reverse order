@@ -1,0 +1,20 @@
+import java.util.*;
+public class priorityqueuedecending {
+
+
+    public static void main(String[] args) {
+        PriorityQueue<Integer>q=new PriorityQueue<>(Comparator.reverseOrder());
+        q.add(1);
+        q.add(3);
+        q.add(2);
+        q.add(5);
+
+        while(!q.isEmpty())
+        {
+
+        System.out.println(q.peek());
+        q.remove();
+        }
+    }
+}
+  
