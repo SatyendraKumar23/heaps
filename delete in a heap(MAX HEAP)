@@ -1,0 +1,88 @@
+import java.util.*;
+public class insertinHEAP {
+    static class HEAP{
+        ArrayList<Integer>arr=new ArrayList<>();
+        //add 
+        public void add(int data)
+        {
+            arr.add(data);
+
+            int x=arr.size()-1;//child 
+            int parent=(x-1)/2;//parent
+
+            while(arr.get(x)>arr.get(parent))
+            {
+                int temp=arr.get(x);
+                arr.set(x,arr.get(parent));
+                arr.set(parent,temp);
+
+                 x=parent;
+                 parent=(x-1)/2;
+            }
+        }
+        //peek
+        public int peek()
+        {
+            return arr.get(0);
+        }
+        public void heapify(int i)
+        {
+            int left=2*i+1;
+            int right=2*i+2;
+            int minheap=i;
+
+            if(left<arr.size()&&arr.get(minheap)<arr.get(left))
+            {
+                minheap=left;
+            }
+            if(right<arr.size()&&arr.get(minheap)<arr.get(right))
+            {
+                minheap=right;
+            }
+            if(minheap!=i)
+            {
+                //swap
+                int temp=arr.get(i);
+                arr.set(i,arr.get(minheap));
+                arr.set(minheap,temp);
+
+                heapify(minheap);
+            }
+        }
+        public int remove()
+        {
+            int data=arr.get(0);
+
+            int temp=arr.get(0);//swap
+            arr.set(0,arr.get(arr.size()-1));
+            arr.set(arr.size()-1,temp);
+
+            arr.remove(arr.size()-1);//remove
+
+            //heapify
+            heapify(0);
+            return data;
+        }
+        public boolean isEmpty()
+        {
+            return arr.size()==0;
+        }
+
+    }
+    public static void main(String[] args) {
+        HEAP h=new HEAP();
+        h.add(1);
+        h.add(4);
+        h.add(3);
+        h.add(7);
+        h.add(9);
+
+        while(!h.isEmpty())
+        {
+            System.out.println(h.peek());
+            h.remove();
+        }
+        
+    }
+    
+}
